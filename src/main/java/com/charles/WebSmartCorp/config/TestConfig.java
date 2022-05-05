@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.charles.WebSmartCorp.entities.Category;
 import com.charles.WebSmartCorp.entities.Order;
+import com.charles.WebSmartCorp.entities.OrderItem;
 import com.charles.WebSmartCorp.entities.Product;
 import com.charles.WebSmartCorp.entities.User;
 import com.charles.WebSmartCorp.entities.enums.OrderStatus;
 import com.charles.WebSmartCorp.repositories.CategoryRepository;
+import com.charles.WebSmartCorp.repositories.OrderItemRepository;
 import com.charles.WebSmartCorp.repositories.OrderRepository;
 import com.charles.WebSmartCorp.repositories.ProductRepository;
 import com.charles.WebSmartCorp.repositories.UserRepository;
@@ -26,6 +28,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -67,11 +72,16 @@ public class TestConfig implements CommandLineRunner{
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.SHIPPED,u1); 
 		
 		
-		
-		
-		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
 	}
 
 }

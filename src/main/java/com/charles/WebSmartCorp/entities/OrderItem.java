@@ -5,8 +5,6 @@ import java.util.Objects;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import com.charles.WebSmartCorp.entities.pk.OrderItemPK;
@@ -43,6 +41,7 @@ public class OrderItem implements Serializable{
 	public void setOrder(Order order) {
 		 id.setOrder(order);
 	}
+	
 	
 	public Product getProduct() {
 		return id.getProduct();
